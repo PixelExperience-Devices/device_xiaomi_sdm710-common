@@ -33,3 +33,6 @@ persist.vendor.sys.pay.ifaa              u:object_r:vendor_tee_listener_prop:s0
 
 # Thermal
 persist.sys.thermal.       u:object_r:thermal_engine_prop:s0
+
+# Wlan
+vendor.wlan.               u:object_r:vendor_wifi_version:s0
