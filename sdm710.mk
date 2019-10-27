@@ -367,6 +367,10 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service \
     thermal.sdm710
 
+# Tracing
+PRODUCT_PACKAGES += \
+    android.hardware.atrace@1.0-service.pixel
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service
