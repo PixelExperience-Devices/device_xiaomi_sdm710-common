@@ -224,8 +224,8 @@ Value* VerifyVendorFn(const char* name, State* state,
         return ErrorAbort(state, kArgsParsingFailure, "%s() error parsing arguments", name);
     }
 
-    if (std::stoi(current_vendor_date) != std::stoi(args[0])) {
-        // Fail immediately if build doesn't match the required one
+    if (std::stoi(current_vendor_date) < std::stoi(args[0])) {
+        // Fail immediately if build is older than required
         return StringValue(strdup("0"));
     }
 

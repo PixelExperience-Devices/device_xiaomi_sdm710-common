@@ -17,6 +17,14 @@
  */
 -->
 <resources>
+
     <!-- Set the automatic brightness mode on by default -->
     <bool name="def_screen_brightness_automatic_mode">true</bool>
+
+    <integer name="def_screen_off_timeout">30000</integer>
+    <bool name="def_bluetooth_on">false</bool>
+
+    <!-- Default for Settings.System.VIBRATE_WHEN_RINGING -->
+    <bool name="def_vibrate_when_ringing">true</bool>
+
 </resources>

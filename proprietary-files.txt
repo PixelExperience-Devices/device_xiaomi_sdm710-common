@@ -42,8 +42,6 @@ lib/libdpmtcm.so
 
 # Display postprocessing
 lib64/vendor.display.color@1.0.so
-lib64/vendor.display.color@1.1.so
-lib64/vendor.display.color@1.2.so
 
 # IMS
 -app/uceShimService/uceShimService.apk
@@ -107,6 +105,8 @@ lib/android.hardware.soundtrigger@2.0-core.so
 lib64/vendor.xiaomi.hardware.mfidoca@1.0.so
 lib64/vendor.xiaomi.hardware.mlipay@1.0.so
 lib64/vendor.xiaomi.hardware.mlipay@1.1.so
+lib64/vendor.xiaomi.hardware.misys@1.0.so
+lib64/vendor.xiaomi.hardware.misys@2.0.so
 lib64/vendor.xiaomi.hardware.mtdservice@1.0.so
 lib64/vendor.xiaomi.hardware.mtdservice@1.1.so
 lib64/vendor.xiaomi.hardware.mtdservice@1.2.so
@@ -124,10 +124,10 @@ lib/vendor.qti.hardware.iop@2.0.so
 lib/vendor.qti.hardware.perf@1.0.so
 
 # Power-off charging daemon
--sbin/charger:sbin/chargeonlymode;rootfs|ee410de1d39143c4a7d3f2622a75b2e51a3dab2b
+-sbin/charger:sbin/chargeonlymode;rootfs|f048d2cc20783ba1a608b73d440b3053af6ec9fd
 
 # QMI
-etc/permissions/qti_libpermissions.xml|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
+etc/permissions/qti_libpermissions.xml|92e5814133dbc1f82fce898374d042a42c9ecf9d
 etc/permissions/qti_permissions.xml
 
 # RIL
@@ -137,7 +137,6 @@ etc/permissions/telephonyservice.xml
 framework/qcrilhook.jar
 framework/qti-telephony-common.jar
 framework/QtiTelephonyServicelibrary.jar
-lib64/vendor.qti.hardware.radio.atcmdfwd@1.0.so
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 
 # SDM
