@@ -3,6 +3,7 @@
 
 # Camera
 /(vendor|system/vendor)/bin/remosaic_daemon   u:object_r:remosaic_daemon_exec:s0
+/sys/devices/platform/soc/62400000.qcom,lpass/subsys3(/.*)?   u:object_r:sysfs_ssr:s0
 
 # Data files
 /data/vendor/fpc(/.*)?                        u:object_r:fingerprint_data_file:s0
