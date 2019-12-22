@@ -68,32 +68,24 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap
+    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-service \
+    Snap \
+    vendor.qti.hardware.camera.device@1.0.vendor
 
 # Common init scripts
 PRODUCT_PACKAGES += \
     init.msm.usb.configfs.rc \
+    init.qcom.power.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
-    init.target.rc \
     ueventd.qcom.rc \
-    init.class_late.sh \
     init.class_main.sh \
-    init.crda.sh \
-    init.mdm.sh \
-    init.qcom.class_core.sh \
-    init.qcom.coex.sh \
-    init.qcom.crashdata.sh \
     init.qcom.early_boot.sh \
-    init.qcom.efs.sync.sh \
     init.qcom.post_boot.sh \
-    init.qcom.sdio.sh \
     init.qcom.sensors.sh \
     init.qcom.sh \
     init.qcom.usb.sh \
-    init.qti.can.sh \
-    init.qti.fm.sh \
-    init.qti.ims.sh \
     init.qti.qseecomd.sh
 
 # Device-specific settings
@@ -106,8 +98,18 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 # Display
 PRODUCT_PACKAGES += \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.mapper@2.0-impl-qti-display \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.memtrack@1.0-service \
+    gralloc.sdm710 \
+    hwcomposer.sdm710 \
+    libtinyxml \
     libvulkan \
-    vendor.display.config@1.0
+    memtrack.sdm710 \
+    vendor.display.config@1.7 \
+    vendor.qti.hardware.display.allocator@1.0-service
 
 # Fingerprint
 PRODUCT_COPY_FILES += \
@@ -135,13 +137,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sdm710-tavil-snd-card_Button_Jack.kl:system/usr/keylayout/sdm710-tavil-snd-card_Button_Jack.kl
 
+# IPA
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.xiaomi_sdm710
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service-sdm
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -199,9 +202,20 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     textclassifier.bundle1
 
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+    android.hardware.thermal@1.0-service \
+    thermal.sdm710
+
 # Trust HAL
 PRODUCT_PACKAGES += \
      vendor.lineage.trust@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
 
 # VNDK-SP
 PRODUCT_PACKAGES += \
