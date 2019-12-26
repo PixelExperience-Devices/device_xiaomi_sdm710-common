@@ -51,8 +51,8 @@ static T get(const std::string& path, const T& def) {
 }
 
 static constexpr int kDefaultMaxBrightness = 255;
-static constexpr int kRampSteps = 50;
-static constexpr int kRampMaxStepDurationMs = 5;
+static constexpr int kRampSteps = 15;
+static constexpr int kRampMaxStepDurationMs = 15;
 
 static uint32_t getBrightness(const LightState& state) {
     uint32_t alpha, red, green, blue;
