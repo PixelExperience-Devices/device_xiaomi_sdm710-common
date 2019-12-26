@@ -25,8 +25,7 @@ vendor/lib/rfsa/adsp/libsns_device_mode_skel.so
 vendor/lib/rfsa/adsp/libsns_low_lat_stream_skel.so
 
 # Audio
-vendor/lib64/soundfx/libvolumelistener.so:lib64/soundfx/libvolumelistener.so|2dffcd0bde20f5f1830918146c9f40c02bbbae9f
-vendor/lib/soundfx/libvolumelistener.so:lib/soundfx/libvolumelistener.so|117f8b7d834b4587dc8c8c5d15fada85b877ed26
+vendor/etc/audio.scd
 vendor/lib64/hw/audio.primary.sdm710.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbrtac.so
@@ -59,8 +58,6 @@ vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
 vendor/lib64/soundfx/libshoebox.so
-vendor/lib64/soundfx/libvolumelistener.so|2dffcd0bde20f5f1830918146c9f40c02bbbae9f
-vendor/lib/soundfx/libvolumelistener.so|117f8b7d834b4587dc8c8c5d15fada85b877ed26
 vendor/lib/soundfx/libasphere.so
 vendor/lib/soundfx/libdirac.so
 vendor/lib/soundfx/libmisoundfx.so

@@ -47,6 +47,7 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno616
 
 # Audio
 AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
 AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_HDMI_SPK := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
@@ -55,6 +56,8 @@ USE_XML_AUDIO_POLICY_CONF := 1
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth/include
+BOARD_HAVE_BLUETOOTH_QCOM := true
+TARGET_USE_QTI_BT_STACK := true
 
 # Camera
 TARGET_USES_QTI_CAMERA_DEVICE := true
@@ -150,13 +153,14 @@ BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(COMMON_PATH)
 
-# Telephony
-TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true
-
 # Treble
 BOARD_VNDK_RUNTIME_DISABLE := true
 BOARD_VNDK_VERSION := current
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
+# WiFi
+WIFI_HIDL_FEATURE_AWARE := true
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+
 # Inherit from the proprietary version
-#-include vendor/xiaomi/sdm710-common/BoardConfigVendor.mk
+-include vendor/xiaomi/sdm710-common/BoardConfigVendor.mk
