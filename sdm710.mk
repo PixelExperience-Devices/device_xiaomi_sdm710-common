@@ -138,6 +138,11 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.qti.qseecomd.sh
 
+# Context Hub
+PRODUCT_PACKAGES += \
+    android.hardware.contexthub@1.0-impl.generic \
+    android.hardware.contexthub@1.0-service
+
 # Device-specific settings
 PRODUCT_PACKAGES += \
     XiaomiParts
@@ -161,9 +166,20 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.7 \
     vendor.qti.hardware.display.allocator@1.0-service
 
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.1-service.clearkey
+
 # Fingerprint
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/fingerprint/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710.rc
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.0-impl \
+    android.hardware.health@2.0-service
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -171,6 +187,10 @@ PRODUCT_PACKAGES += \
     android.hidl.base@1.0_system \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0_system
+
+# HotwordEnrollement app permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/permissions/privapp-permissions-hotword.xml:system/etc/permissions/privapp-permissions-hotword.xml
 
 # IFAA manager
 PRODUCT_PACKAGES += \
@@ -236,13 +256,18 @@ PRODUCT_PACKAGES += \
     android.hardware.power@1.2-service.xiaomi_sdm710
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/power/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+    $(LOCAL_PATH)/power/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml \
+    $(LOCAL_PATH)/configs/perf/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.conf
 
 # QTI
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml \
-    $(LOCAL_PATH)/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
-    $(LOCAL_PATH)/permissions/privapp-permissions-hotword.xml:system/etc/permissions/privapp-permissions-hotword.xml
+    $(LOCAL_PATH)/permissions/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml
+
+# Radio
+PRODUCT_PACKAGES += \
+    libjson \
+    librmnetctl
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -255,14 +280,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librecovery_updater_xiaomi
 
+# RenderScript
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
     $(LOCAL_PATH)/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+# Sensors
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service \
+    libsensorndkbridge
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -285,6 +316,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
      vendor.lineage.trust@1.0-service
 
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
@@ -294,9 +329,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vndk-sp
 
+# WiFi
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service
+
 # WiFi Display
 PRODUCT_PACKAGES += \
-    libnl
+    libdisplayconfig \
+    libnl \
+    libqdMetaData.system
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
