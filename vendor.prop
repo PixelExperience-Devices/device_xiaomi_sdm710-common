@@ -111,5 +111,8 @@ persist.dbg.wfc_avail_ovr=1
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 
+# Network manager
+persist.vendor.data.iwlan.enable=true
+
 # USB
 vendor.usb.diag.func.name=diag
