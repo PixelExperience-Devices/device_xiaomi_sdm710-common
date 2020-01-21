@@ -239,6 +239,11 @@
     -->
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">false</bool>
 
+    <!-- Screen brightness used to dim the screen while dozing in a very low power state.
+         May be less than the minimum allowed brightness setting
+         that can be set by the user. -->
+    <integer name="config_screenBrightnessDoze">17</integer>
+
     <!-- Configure mobile tcp buffer sizes in the form:
          rat-name:rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max
          If no value is found for the rat-name in use, the system default will be applied.
@@ -364,26 +369,4 @@
 
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
-
-    <!-- Whether device has oled display -->
-    <bool name="config_hasOledDisplay">true</bool>
-
-    <!-- Whether UI for multi user should be shown -->
-    <bool name="config_enableMultiUserUI">true</bool>
-
-    <!-- Vibration -->
-    <integer-array name="config_longPressVibePattern">
-        <item>0</item>
-        <item>7</item>
-        <item>10</item>
-    </integer-array>
-    <integer-array name="config_virtualKeyVibePattern">
-        <item>0</item>
-        <item>5</item>
-        <item>10</item>
-    </integer-array>
-    <integer-array name="config_keyboardTapVibePattern">
-        <item>10</item>
-    </integer-array>
-
 </resources>
