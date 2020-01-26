@@ -144,7 +144,6 @@ PRODUCT_PACKAGES += \
 # Common init scripts
 PRODUCT_PACKAGES += \
     init.msm.usb.configfs.rc \
-    init.qcom.power.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     ueventd.qcom.rc \
