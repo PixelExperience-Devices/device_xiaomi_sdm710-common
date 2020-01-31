@@ -66,6 +66,11 @@ PRODUCT_COPY_FILES += \
 # AID/fs configs
 PRODUCT_PACKAGES += \
     fs_config_files
+	
+# AOT Preload
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI \
+    NexusLauncherRelease
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -161,10 +166,6 @@ PRODUCT_PACKAGES += \
 # Device-specific settings
 PRODUCT_PACKAGES += \
     XiaomiParts
-
-# Dex
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
 
 # Display
 PRODUCT_PACKAGES += \
