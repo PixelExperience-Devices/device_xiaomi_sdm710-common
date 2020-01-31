@@ -12,7 +12,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/xiaomi/sdm710-common/sdm710-common-vendor.mk) 
+$(call inherit-product-if-exists, vendor/xiaomi/sdm710-common/sdm710-common-vendor.mk)
 
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -138,6 +138,11 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service \
     Snap \
     vendor.qti.hardware.camera.device@1.0.vendor
+	
+# Codec2
+PRODUCT_PACKAGES += \
+    libcodec2_vndk.vendor \
+    libcodec2_hidl@1.0.vendor
 
 # Codec2 modules
 PRODUCT_PACKAGES += \
@@ -175,10 +180,15 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     gralloc.sdm710 \
     hwcomposer.sdm710 \
+	libdisplayconfig \
+    libdisplayconfig.vendor \
+    libqdMetaData \
+    libqdMetaData.system \
     libtinyxml \
     libvulkan \
-    memtrack.sdm710 \
     vendor.display.config@1.7 \
+    vendor.display.config@1.7.vendor \
+    memtrack.sdm710 \
     vendor.qti.hardware.display.allocator@1.0-service
 
 # DRM
@@ -267,6 +277,9 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml
@@ -382,9 +395,10 @@ PRODUCT_COPY_FILES += \
 
 # WiFi Display
 PRODUCT_PACKAGES += \
-    libdisplayconfig \
-    libnl \
-    libqdMetaData.system
+    libnl
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+# Set boot SPL
+BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
