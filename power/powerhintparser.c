@@ -30,7 +30,7 @@
 #define LOG_TAG "QCOM PowerHAL"
 
 #include "powerhintparser.h"
-#include <cutils/log.h>
+#include <log/log.h>
 #include <cutils/properties.h>
 #include <fcntl.h>
 #include <libxml/parser.h>
