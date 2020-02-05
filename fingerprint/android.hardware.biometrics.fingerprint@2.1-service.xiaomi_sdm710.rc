@@ -17,7 +17,6 @@ on boot
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/wakeup_enable
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/hw_reset
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/device_prepare
-    chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/fingerdown_wait
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/vendor
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/regulator_enable
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/screen_status
