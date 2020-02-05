@@ -66,7 +66,7 @@ PRODUCT_COPY_FILES += \
 # AID/fs configs
 PRODUCT_PACKAGES += \
     fs_config_files
-	
+
 # AOT Preload
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
@@ -126,10 +126,10 @@ PRODUCT_COPY_FILES += \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     $(TOPDIR)frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
-# AuthSecret 
+# AuthSecret
 PRODUCT_PACKAGES += \
     android.hardware.authsecret@1.0-service
-	
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.0-impl \
@@ -144,7 +144,7 @@ PRODUCT_PACKAGES += \
     libdng_sdk.vendor \
     Snap \
     vendor.qti.hardware.camera.device@1.0.vendor
-	
+
 # Codec2
 PRODUCT_PACKAGES += \
     libcodec2_vndk.vendor \
@@ -186,7 +186,7 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     gralloc.sdm710 \
     hwcomposer.sdm710 \
-	libdisplayconfig \
+    libdisplayconfig \
     libdisplayconfig.vendor \
     libqdMetaData \
     libqdMetaData.system \
@@ -250,7 +250,7 @@ PRODUCT_COPY_FILES += \
 # IRQ
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
-	
+
 # IPA
 PRODUCT_PACKAGES += \
     ipacm \
@@ -376,8 +376,9 @@ PRODUCT_PACKAGES += \
 
 # VNDK-SP
 PRODUCT_PACKAGES += \
+    libstdc++.vendor \
     vndk-sp
-	
+
 # VR
 PRODUCT_PACKAGES += \
     android.hardware.vr@1.0-impl \
