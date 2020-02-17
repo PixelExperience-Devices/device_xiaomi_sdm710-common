@@ -1,1 +1,2 @@
 binder_call(system_server, glgps)
+allow system_server sysfs_rtc:file r_file_perms;
