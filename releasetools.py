@@ -61,7 +61,7 @@ def OTA_UpdateFirmware(info):
   info.script.AppendExtra('package_extract_file("install/firmware-update/xbl_config.elf", "/dev/block/bootdevice/by-name/xbl_config");')
 
 def AddImage(info, input_zip, basename, dest):
-  path = "IMAGE/" + basename
+  path = "IMAGES/" + basename
   if path not in input_zip.namelist():
     return
 
