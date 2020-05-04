@@ -141,9 +141,6 @@ on enable-low-power
     write /sys/module/cpu_boost/parameters/powerkey_input_boost_freq "0:1209600 1:0 2:0 3:0 4:0 5:0 6:2054400 7:0"
     write /sys/module/cpu_boost/parameters/powerkey_input_boost_ms 400
 
-    # Enable oom_reaper
-    write /sys/module/lowmemorykiller/parameters/oom_reaper 1
-
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
     write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 50
@@ -208,9 +205,6 @@ on enable-low-power
     # Enable adaptive LMK for all targets &
     # use Google default LMK series for all 64-bit targets >=2GB.
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-
-    # Set LMK minfree
-    write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,85296,120640"
 
     # Post-setup services
     setprop vendor.post_boot.parsed 1
