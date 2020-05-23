@@ -1,12 +1,3 @@
-service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710
-    # "class hal" causes a race condition on some devices due to files created
-    # in /data. As a workaround, postpone startup until later in boot once
-    # /data is mounted.
-    class late_start
-    user system
-    group system input uhid
-   # writepid /dev/cpuset/system-background/tasks
-
 on init
     # Goodix fingerprint
     chown system system /dev/goodix_fp
@@ -38,8 +29,6 @@ on boot
 on post-fs-data
     mkdir /data/vendor/fpc 0770 system system
     mkdir /data/vendor/goodix 0770 system system
-    mkdir /data/vendor/goodix/gf_data/authenticate 0770 system system
-    mkdir /data/vendor/goodix/gf_data/enroll 0770 system system
     chown system system /data/vendor
 
 service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710
