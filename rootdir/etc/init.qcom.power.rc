@@ -88,7 +88,6 @@ on charger
 
     start vendor.hvdcp_opti
     start vendor.power_off_alarm
-    start vendor.poweroffm64
     mount tmpfs tmpfs /data
     start vendor.thermal-engine
     setprop vendor.usb.controller a600000.dwc3
@@ -233,8 +232,3 @@ service vendor.power_off_alarm /vendor/bin/power_off_alarm
     group system
     disabled
     oneshot
-
-service vendor.poweroffm64 /vendor/bin/poweroffm64
-    class late_start
-    oneshot
-    seclabel u:r:poweroffm64:s0
