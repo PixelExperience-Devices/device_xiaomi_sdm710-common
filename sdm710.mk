@@ -319,6 +319,10 @@ PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks@1.2 \
     android.hardware.neuralnetworks@1.2.vendor
 
+# Perfd (dummy)
+PRODUCT_PACKAGES += \
+		libqti-perfd-client
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.xiaomi-sdm710-libperfmgr \
