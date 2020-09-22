@@ -49,6 +49,14 @@ if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
 
+function blob_fixup() {
+    case "${1}" in
+    product/lib64/libdpmframework.so | product/lib/libdpmframework.so )
+        patchelf --add-needed "libshim_dpmframework.so" "${2}"
+        ;;
+    esac
+}
+
 # Initialize the helper for common device
 setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${AOSP_ROOT}" true "${CLEAN_VENDOR}"
 
