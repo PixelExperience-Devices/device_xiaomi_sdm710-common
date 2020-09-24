@@ -157,6 +157,9 @@ ro.vendor.extension_library=libqti-perfd-client.so
 # Network manager
 persist.vendor.data.iwlan.enable=true
 
+# Radio
+persist.vendor.radio.enableadvancedscan=false
+
 # SoC
 ro.soc.manufacturer=Qualcomm
 ro.soc.model=SDM710
