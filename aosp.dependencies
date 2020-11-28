@@ -2,12 +2,12 @@
   {
     "repository" : "vendor_xiaomi_sdm710-common",
     "target_path": "vendor/xiaomi/sdm710-common",
-    "branch": "ten",
+    "branch": "eleven",
     "remote": "pixel-devices-blobs"
   },
   {
     "repository": "kernel_xiaomi_sdm710",
     "target_path": "kernel/xiaomi/sdm710",
-    "branch": "ten"
+    "branch": "eleven"
   }
 ]
