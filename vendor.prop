@@ -117,5 +117,9 @@ ro.vendor.extension_library=libqti-perfd-client.so
 # Network manager
 persist.vendor.data.iwlan.enable=true
 
+# SoC
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=SDM710
+
 # USB
 vendor.usb.diag.func.name=diag
