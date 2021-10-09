@@ -16,6 +16,7 @@ persist.device_config.runtime_native_boot.iorap_readahead_enable=true
 # RIL
 DEVICE_PROVISIONED=1
 persist.radio.multisim.config=dsds
+persist.sys.fflag.override.settings_provider_model=false
 persist.vendor.radio.apm_sim_not_pwdn=1
 persist.vendor.radio.custom_ecc=1
 persist.vendor.radio.flexmap_type=none
