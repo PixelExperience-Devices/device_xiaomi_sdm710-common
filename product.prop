@@ -11,7 +11,7 @@ ro.lmk.use_minfree_levels=true
 ro.lmk.log_stats=true
 
 # IORap
-iorapd.readahead.enable=true
+persist.device_config.runtime_native_boot.iorap_readahead_enable=true
 
 # RIL
 DEVICE_PROVISIONED=1
