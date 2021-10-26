@@ -447,8 +447,7 @@ PRODUCT_PACKAGES += \
     libnl \
     libwfdaac_vendor
 
-#PRODUCT_BOOT_JARS += \
-    WfdCommon
+include vendor/xiaomi/sdm710-common-extra/wfd.mk
 
 # Set boot SPL
 BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
