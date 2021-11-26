@@ -1,1 +1,6 @@
-get_prop(vendor_init, persist_debug_prop)
+get_prop(vendor_init, persist_debug_prop);
+
+set_prop(vendor_init, vendor_power_prop);
+
+# Allow vendor_init to enable/disable sched_boost
+allow vendor_init proc_sysctl_schedboost:file rw_file_perms;

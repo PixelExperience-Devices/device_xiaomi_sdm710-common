@@ -26,6 +26,7 @@
 #
 
 on early-init
+    # Enable sched_boost
     write /proc/sys/kernel/sched_boost 1
 
 on init
@@ -37,10 +38,45 @@ on init
     write /dev/stune/foreground/schedtune.colocate 0
     write /dev/stune/top-app/schedtune.colocate 1
 
+    # Disable UFS powersaving
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 0
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/hibern8_on_idle_enable 0
+
     # Disable powersaving
     write /sys/module/lpm_levels/parameters/sleep_disabled 1
 
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+
+    # Bring all cores online
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
+
+    # Configure governor settings for little cluster
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
+
+    # Configure governor settings for big cluster
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor "schedutil"
+    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/down_rate_limit_us 20000
+
+    # Sched_load_boost as -6 is equivalent to target load as 85.
+    # It is per cpu tunable
+    write /sys/devices/system/cpu/cpu6/sched_load_boost -6
+    write /sys/devices/system/cpu/cpu7/sched_load_boost -6
+    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/hispeed_load 85
+
+    # Set default schedTune value for foreground/top-app
+    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/top-app/schedtune.boost 10
+    write /dev/stune/top-app/schedtune.prefer_idle 1
 
     # Add a cpuset for the camera daemon
     mkdir /dev/cpuset/camera-daemon
@@ -59,6 +95,13 @@ on boot
     write /dev/cpuset/background/cpus 0-7
     write /dev/cpuset/system-background/cpus 0-7
 
+    # Disable console_suspend to get better logging for kernel crashes
+    write /sys/module/printk/parameters/console_suspend N
+
+on post-fs
+    # Disable sched autogroup
+    write /proc/sys/kernel/sched_autogroup_enabled 0
+
 on property:init.svc.vendor.charger=running
     setprop persist.sys.usb.config mass_storage
 
@@ -68,15 +111,24 @@ on property:init.svc.vendor.charger=running
     write /sys/devices/system/cpu/cpu3/online 0
     write /sys/devices/system/cpu/cpu4/online 0
     write /sys/devices/system/cpu/cpu5/online 0
-    write /sys/devices/system/cpu/cpu6/online 0
     write /sys/devices/system/cpu/cpu7/online 0
     wait /dev/block/bootdevice
 
+    # Enable UFS powersaving
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/hibern8_on_idle_enable 1
+
     # Turn on sleep modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
-    write /sys/module/lpm_levels/system/system-pc/idle_enabled 0
+
+    # Disable sched_boost
+    write /proc/sys/kernel/sched_boost 0
 
     write /sys/module/msm_thermal/parameters/enabled "N"
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    mkdir /mnt/vendor/persist
+    chown root system /mnt/vendor/persist
+    chmod 0771 /mnt/vendor/persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
 
     start vendor.hvdcp_opti
@@ -103,32 +155,10 @@ on enable-low-power
 
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_upmigrate 96
-    write /proc/sys/kernel/sched_downmigrate 40
+    write /proc/sys/kernel/sched_downmigrate 90
     write /proc/sys/kernel/sched_group_upmigrate 140
     write /proc/sys/kernel/sched_group_downmigrate 120
     write /proc/sys/kernel/sched_walt_rotate_big_tasks 1
-
-    # configure governor settings for little cluster
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/rate_limit_us 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/hispeed_freq 1209600
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
-
-    # Configure governor settings for big cluster
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor "schedutil"
-    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/rate_limit_us 0
-    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/hispeed_freq 1344000
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq 300000
-
-    # sched_load_boost as -6 is equivalent to target load as 85. It is per cpu tunable.
-    write /sys/devices/system/cpu/cpu6/sched_load_boost -6
-    write /sys/devices/system/cpu/cpu7/sched_load_boost -6
-    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/hispeed_load 85
-
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1209600"
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
-    write /sys/module/cpu_boost/parameters/powerkey_input_boost_freq "0:1209600 1:0 2:0 3:0 4:0 5:0 6:2054400 7:0"
-    write /sys/module/cpu_boost/parameters/powerkey_input_boost_ms 400
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
@@ -168,8 +198,11 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
 
     # Set cpuset parameters
-    write /dev/cpuset/background/cpus 0-5
-    write /dev/cpuset/system-background/cpus 0-5
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-5,7
+    write /dev/cpuset/background/cpus 4-5
+    write /dev/cpuset/system-background/cpus 2-5
+    write /dev/cpuset/restricted/cpus 2-5
 
     # Turn off scheduler boost at the end
     write /proc/sys/kernel/sched_boost 0
@@ -187,19 +220,29 @@ on enable-low-power
     # Turn on sleep modes
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
+    # Enable idle state listener
+    write /sys/class/drm/card0/device/idle_encoder_mask 1
+    write /sys/class/drm/card0/device/idle_timeout_ms 100
+
+    # Enable UFS powersaving
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/hibern8_on_idle_enable 1
+
     write /sys/module/vmpressure/parameters/allocstall_threshold 0
     write /proc/sys/vm/swappiness 100
     write /proc/sys/vm/watermark_scale_factor 1
 
-    # Enable adaptive LMK for all targets &
-    # use Google default LMK series for all 64-bit targets >=2GB.
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
 
-    # Post-setup services
-    setprop vendor.post_boot.parsed 1
+    start vendor.per_proxy
 
 on property:sys.boot_completed=1
     trigger enable-low-power
+
+# If UART is on, enable console_suspend on boot_complete to save power
+on property:sys.boot_completed=1 && property:init.svc.console=running
+    write /sys/module/printk/parameters/console_suspend Y
 
 on property:init.svc.recovery=running
     trigger enable-low-power
@@ -210,6 +253,11 @@ service vendor.charger /system/bin/chargeonlymode
     group system graphics input
     capabilities SYS_BOOT
     seclabel u:r:charger:s0
+
+service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
+    class main
+    user root
+    group system wakelock
 
 service vendor.power_off_alarm /vendor/bin/power_off_alarm
     class core
