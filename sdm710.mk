@@ -229,7 +229,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # IFAA manager
-include vendor/xiaomi/sdm710-common-extra/ifaa.mk
+include vendor/xiaomi/sdm845-common-extra/ifaa.mk
 
 #PRODUCT_BOOT_JARS += \
     org.ifaa.android.manager
@@ -458,7 +458,7 @@ PRODUCT_PACKAGES += \
     libnl \
     libwfdaac_vendor
 
-include vendor/xiaomi/sdm710-common-extra/wfd.mk
+include vendor/xiaomi/sdm845-common-extra/wfd.mk
 
 # Set boot SPL
 BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
