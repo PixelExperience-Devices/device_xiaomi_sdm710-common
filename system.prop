@@ -1,7 +1,18 @@
 # Audio
+audio.offload.gapless.enabled=true
 audio.deep_buffer.media=true
 audio.offload.min.duration.secs=30
 audio.offload.video=true
+persist.audio.fluence.speaker=true
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.vendor.audio.ambisonic.auto.profile=false
+persist.vendor.audio.ambisonic.capture=false
+persist.vendor.audio.avs.afe_api_version=2
+persist.vendor.audio.fluence.audiorec=false
+persist.vendor.audio.fluence.tmic.enabled=false
+persist.vendor.audio.hifi.int_codec=true
+persist.vendor.audio.spv3.enable=true
 ro.af.client_heap_size_kbyte=7168
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=11
