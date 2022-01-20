@@ -1,3 +1,8 @@
+# Bluetooth
+vendor.bluetooth.soc=cherokee
+# Hearing Aid Audio Support Using Bluetooth LE
+bluetooth.profile.asha.central=true
+
 # Dex2oat
 dalvik.vm.dex2oat64.enabled=true
 dalvik.vm.systemuicompilerfilter=speed
