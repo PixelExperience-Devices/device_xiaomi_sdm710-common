@@ -165,6 +165,7 @@ PRODUCT_PACKAGES += \
     gralloc.sdm710 \
     hwcomposer.sdm710 \
     libdisplayconfig.qti \
+    libdisplayconfig.system.qti \
     libqdMetaData \
     libqdMetaData.system \
     libtinyxml \
