@@ -1,3 +1,7 @@
+# Dex2oat
+dalvik.vm.dex2oat64.enabled=true
+dalvik.vm.systemuicompilerfilter=speed
+
 # LMKD
 ro.lmk.low=1001
 ro.lmk.medium=800
