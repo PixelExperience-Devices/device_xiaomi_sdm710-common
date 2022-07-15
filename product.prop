@@ -29,6 +29,3 @@ ril.subscription.types=NV,RUIM
 ro.com.android.dataroaming=true
 ro.telephony.default_network=10,10
 telephony.lteOnCdmaDevice=1
-
-# Use Vulkan backend for Skia UI rendering
-debug.hwui.renderer=skiavk
